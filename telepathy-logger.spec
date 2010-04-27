@@ -7,9 +7,13 @@ Group:		Libraries
 Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
 # Source0-md5:	76b69c52a53aec8a8d1b5a0f02484a8c
 URL:		http://telepathy.freedesktop.org/wiki/Logger
+BuildRequires:	GConf2-devel
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.8
+BuildRequires:	dbus-devel >= 1.1.0
+BuildRequires:	dbus-glib-devel >= 0.82
 BuildRequires:	glib2-devel >= 1:2.0.0
+BuildRequires:	libxml2-devel
 Requires:	%{name} = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
