@@ -13,6 +13,7 @@ BuildRequires:	automake >= 1:1.8
 BuildRequires:	dbus-devel >= 1.1.0
 BuildRequires:	dbus-glib-devel >= 0.82
 BuildRequires:	glib2-devel >= 1:2.0.0
+BuildRequires:	gnome-common
 BuildRequires:	libxml2-devel
 Requires:	%{name} = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
