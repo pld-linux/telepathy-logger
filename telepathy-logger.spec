@@ -1,7 +1,7 @@
 Summary:	Logging service for Telepathy
 Name:		telepathy-logger
 Version:	0.1.1
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
