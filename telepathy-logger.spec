@@ -6,6 +6,7 @@ License:	LGPL
 Group:		Libraries
 Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
 # Source0-md5:	76b69c52a53aec8a8d1b5a0f02484a8c
+Patch0:		configure.patch
 URL:		http://telepathy.freedesktop.org/wiki/Logger
 BuildRequires:	GConf2-devel
 BuildRequires:	autoconf >= 2.59
@@ -55,6 +56,7 @@ Header files for telepathy-logger library.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__aclocal} -I m4
