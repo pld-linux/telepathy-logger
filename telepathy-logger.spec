@@ -17,11 +17,13 @@ BuildRequires:	dbus-glib-devel >= 0.82
 BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils > 0.17.3
+BuildRequires:	gtk-doc
 BuildRequires:	gtk-doc-automake >= 1.10
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig
 BuildRequires:	telepathy-glib-devel >= 0.9.0
+BuildRequires:	xorg-lib-libICE-devel
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
