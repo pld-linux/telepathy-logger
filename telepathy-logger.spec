@@ -1,13 +1,12 @@
 Summary:	Logging service for Telepathy
 Summary(pl.UTF-8):	Usługa logowania dla Telepathy
 Name:		telepathy-logger
-Version:	0.1.1
-Release:	3
+Version:	0.1.4
+Release:	1
 License:	LGPL
 Group:		Applications
 Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
-# Source0-md5:	76b69c52a53aec8a8d1b5a0f02484a8c
-Patch0:		configure.patch
+# Source0-md5:	7004b300f3838df3aa175f0f4e10e71e
 URL:		http://telepathy.freedesktop.org/wiki/Logger
 BuildRequires:	GConf2-devel
 BuildRequires:	autoconf >= 2.59
@@ -74,7 +73,6 @@ Pliki nagłówkowe dla biblioteki telepathy-logger.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -93,6 +91,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -108,11 +108,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog
-%attr(755,root,root) %{_bindir}/telepathy-logger
+%attr(755,root,root) %{_libexecdir}/telepathy-logger
 %{_sysconfdir}/gconf/schemas/telepathy-logger.schemas
 %{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.Logger.service
 %{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Logger.service
-%{_datadir}/telepathy/clients/TelepathyLogger.client
+%{_datadir}/telepathy/clients/Logger.client
 
 %files apidocs
 %defattr(644,root,root,755)
@@ -121,11 +121,10 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtelepathy-logger.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtelepathy-logger.so.0
+%attr(755,root,root) %ghost %{_libdir}/libtelepathy-logger.so.1
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtelepathy-logger.so
-%{_libdir}/libtelepathy-logger.la
-%{_includedir}/telepathy-logger
-%{_pkgconfigdir}/telepathy-logger.pc
+%{_includedir}/telepathy-logger-0.1
+%{_pkgconfigdir}/telepathy-logger-0.1.pc
