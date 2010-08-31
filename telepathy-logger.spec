@@ -23,7 +23,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig
 BuildRequires:	telepathy-glib-devel >= 0.9.0
 BuildRequires:	xorg-lib-libICE-devel
-Requires(post,postun):	glib2 >= 2.25.11
+Requires(post,postun):	glib2 >= 1:2.25.11
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
