@@ -2,7 +2,7 @@ Summary:	Logging service for Telepathy
 Summary(pl.UTF-8):	Usługa logowania dla Telepathy
 Name:		telepathy-logger
 Version:	0.1.5
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Applications
 Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
@@ -23,7 +23,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig
 BuildRequires:	telepathy-glib-devel >= 0.9.0
 BuildRequires:	xorg-lib-libICE-devel
-Requires(post,postun):	glib2 >= 1:2.26.10
+Requires(post,postun):	glib2 >= 1:2.26.0
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
