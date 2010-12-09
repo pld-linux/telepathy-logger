@@ -21,6 +21,7 @@ BuildRequires:	gtk-doc-automake >= 1.10
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	telepathy-glib-devel >= 0.9.0
 BuildRequires:	xorg-lib-libICE-devel
 Requires(post,postun):	glib2 >= 1:2.26.0
@@ -100,10 +101,10 @@ rm -rf $RPM_BUILD_ROOT
 %postun libs	-p /sbin/ldconfig
 
 %post
-glib-compile-schemas %{_datadir}/glib-2.0/schemas
+%glib_compile_schemas
 
 %postun
-glib-compile-schemas %{_datadir}/glib-2.0/schemas
+%glib_compile_schemas
 
 %files
 %defattr(644,root,root,755)
