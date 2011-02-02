@@ -13,15 +13,19 @@ BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-devel >= 1.1.0
 BuildRequires:	dbus-glib-devel >= 0.82
+BuildRequires:	docbook-dtd412-xml
+BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils > 0.17.3
 BuildRequires:	gtk-doc
 BuildRequires:	gtk-doc-automake >= 1.10
+BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
+BuildRequires:	sqlite3-devel
 BuildRequires:	telepathy-glib-devel >= 0.9.0
 BuildRequires:	xorg-lib-libICE-devel
 Requires(post,postun):	glib2 >= 1:2.26.0
