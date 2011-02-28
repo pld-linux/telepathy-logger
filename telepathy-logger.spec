@@ -1,15 +1,15 @@
 Summary:	Logging service for Telepathy
 Summary(pl.UTF-8):	Usługa logowania dla Telepathy
 Name:		telepathy-logger
-Version:	0.1.7
+Version:	0.2.1
 Release:	1
 License:	LGPL
 Group:		Applications
 Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
-# Source0-md5:	92fdf8bd2ced40831b3c1198ed1b88d2
+# Source0-md5:	eff40c64f5d300821121cfa80c0c6cf6
 URL:		http://telepathy.freedesktop.org/wiki/Logger
 BuildRequires:	GConf2-devel
-BuildRequires:	autoconf >= 2.59
+BuildRequires:	autoconf >= 2.66
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-devel >= 1.1.0
 BuildRequires:	dbus-glib-devel >= 0.82
@@ -20,14 +20,18 @@ BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils > 0.17.3
 BuildRequires:	gtk-doc
 BuildRequires:	gtk-doc-automake >= 1.10
-BuildRequires:	intltool
+BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
+BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	sqlite3-devel
-BuildRequires:	telepathy-glib-devel >= 0.9.0
+BuildRequires:	telepathy-glib-devel >= 0.11.7
 BuildRequires:	xorg-lib-libICE-devel
+# for tests
+#BuildRequires:	python >= 2.5
+#BuildRequires:	python-TwistedCore
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -66,9 +70,9 @@ Summary:	Header files for telepathy-logger library
 Summary(pl.UTF-8):	Pliki nagłówkowe dla biblioteki telepathy-logger
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.22.0
+Requires:	glib2-devel >= 1:2.26.0
 Requires:	libxml2-devel
-Requires:	telepathy-glib-devel >= 0.9.0
+Requires:	telepathy-glib-devel >= 0.11.7
 
 %description devel
 Header files for telepathy-logger library.
@@ -88,7 +92,7 @@ Pliki nagłówkowe dla biblioteki telepathy-logger.
 	--disable-static \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
-%{__make} -j1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -126,10 +130,10 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtelepathy-logger.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtelepathy-logger.so.1
+%attr(755,root,root) %ghost %{_libdir}/libtelepathy-logger.so.2
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtelepathy-logger.so
-%{_includedir}/telepathy-logger-0.1
-%{_pkgconfigdir}/telepathy-logger-0.1.pc
+%{_includedir}/telepathy-logger-0.2
+%{_pkgconfigdir}/telepathy-logger-0.2.pc
