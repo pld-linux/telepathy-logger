@@ -1,12 +1,12 @@
 Summary:	Logging service for Telepathy
 Summary(pl.UTF-8):	Usługa logowania dla Telepathy
 Name:		telepathy-logger
-Version:	0.1.7
+Version:	0.2.5
 Release:	1
 License:	LGPL
 Group:		Applications
 Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
-# Source0-md5:	92fdf8bd2ced40831b3c1198ed1b88d2
+# Source0-md5:	629791e89436933aa6a2c4bd8ce39898
 URL:		http://telepathy.freedesktop.org/wiki/Logger
 BuildRequires:	GConf2-devel
 BuildRequires:	autoconf >= 2.59
@@ -126,10 +126,10 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtelepathy-logger.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtelepathy-logger.so.1
+%attr(755,root,root) %ghost %{_libdir}/libtelepathy-logger.so.2
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtelepathy-logger.so
-%{_includedir}/telepathy-logger-0.1
-%{_pkgconfigdir}/telepathy-logger-0.1.pc
+%{_includedir}/telepathy-logger-0.2
+%{_pkgconfigdir}/telepathy-logger-0.2.pc
