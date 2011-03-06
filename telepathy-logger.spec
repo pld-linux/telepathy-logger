@@ -18,6 +18,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils > 0.17.3
+BuildRequires:	gobject-introspection-devel
 BuildRequires:	gtk-doc
 BuildRequires:	gtk-doc-automake >= 1.10
 BuildRequires:	intltool
@@ -127,9 +128,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtelepathy-logger.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libtelepathy-logger.so.2
+%{_libdir}/girepository-1.0/TelepathyLogger-0.2.typelib
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtelepathy-logger.so
 %{_includedir}/telepathy-logger-0.2
 %{_pkgconfigdir}/telepathy-logger-0.2.pc
+%{_datadir}/gir-1.0/TelepathyLogger-0.2.gir
