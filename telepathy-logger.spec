@@ -1,12 +1,12 @@
 Summary:	Logging service for Telepathy
 Summary(pl.UTF-8):	Usługa logowania dla Telepathy
 Name:		telepathy-logger
-Version:	0.2.10
-Release:	2
+Version:	0.2.11
+Release:	1
 License:	LGPL
 Group:		Applications
 Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
-# Source0-md5:	ec01a8f99fc11406e85153095433c155
+# Source0-md5:	ea45afde47c40e4a7dab56bd21780a64
 URL:		http://telepathy.freedesktop.org/wiki/Logger
 BuildRequires:	autoconf >= 2.66
 BuildRequires:	automake >= 1:1.9
@@ -26,7 +26,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	sqlite3-devel
-BuildRequires:	telepathy-glib-devel >= 0.14.0
+BuildRequires:	telepathy-glib-devel >= 0.15.6
 BuildRequires:	xorg-lib-libICE-devel
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires:	%{name}-libs = %{version}-%{release}
@@ -68,7 +68,7 @@ Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.26.0
 Requires:	libxml2-devel
-Requires:	telepathy-glib-devel >= 0.14.0
+Requires:	telepathy-glib-devel >= 0.15.6
 
 %description devel
 Header files for telepathy-logger library.
@@ -85,6 +85,7 @@ Pliki nagłówkowe dla biblioteki telepathy-logger.
 %{__autoconf}
 %{__automake}
 %configure \
+	--disable-silent-rules \
 	--disable-static \
 	--enable-call \
 	--enable-gtk-doc \
@@ -127,7 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtelepathy-logger.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtelepathy-logger.so.2
+%attr(755,root,root) %ghost %{_libdir}/libtelepathy-logger.so.3
 %{_libdir}/girepository-1.0/TelepathyLogger-0.2.typelib
 
 %files devel
