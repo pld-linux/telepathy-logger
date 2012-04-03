@@ -1,12 +1,12 @@
 Summary:	Logging service for Telepathy
 Summary(pl.UTF-8):	Usługa logowania dla Telepathy
 Name:		telepathy-logger
-Version:	0.2.12
+Version:	0.4.0
 Release:	1
 License:	LGPL
 Group:		Applications
 Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
-# Source0-md5:	102a622855a3e20a191b0812ae7c9b8e
+# Source0-md5:	0b891b860c7f3a01926f5cc22fd26120
 URL:		http://telepathy.freedesktop.org/wiki/Logger
 BuildRequires:	autoconf >= 2.66
 BuildRequires:	automake >= 1:1.9
@@ -26,7 +26,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	sqlite3-devel
-BuildRequires:	telepathy-glib-devel >= 0.15.6
+BuildRequires:	telepathy-glib-devel >= 0.16.0
 BuildRequires:	xorg-lib-libICE-devel
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires:	%{name}-libs = %{version}-%{release}
@@ -54,6 +54,7 @@ Dokumentacja API biblioteki telepathy-logger.
 Summary:	telepathy-logger shared library
 Summary(pl.UTF-8):	Biblioteka telepathy-logger
 Group:		Libraries
+Requires:	telepathy-glib >= 0.16.0
 
 %description libs
 telepathy-logger shared library.
@@ -68,7 +69,7 @@ Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.26.0
 Requires:	libxml2-devel
-Requires:	telepathy-glib-devel >= 0.15.6
+Requires:	telepathy-glib-devel >= 0.16.0
 
 %description devel
 Header files for telepathy-logger library.
@@ -87,7 +88,6 @@ Pliki nagłówkowe dla biblioteki telepathy-logger.
 %configure \
 	--disable-silent-rules \
 	--disable-static \
-	--enable-call \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
 %{__make} -j1
