@@ -1,9 +1,13 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# don't build static library
+#
 Summary:	Logging service for Telepathy
 Summary(pl.UTF-8):	Usługa logowania dla Telepathy
 Name:		telepathy-logger
 Version:	0.4.0
 Release:	1
-License:	LGPL
+License:	LGPL v2.1+
 Group:		Applications
 Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
 # Source0-md5:	0b891b860c7f3a01926f5cc22fd26120
@@ -23,13 +27,16 @@ BuildRequires:	gtk-doc-automake >= 1.10
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
+BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig
+BuildRequires:	python >= 1:2.5
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	sqlite3-devel
 BuildRequires:	telepathy-glib-devel >= 0.16.0
 BuildRequires:	xorg-lib-libICE-devel
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	dbus >= 1.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,22 +45,13 @@ This package provides logging service for Telepathy.
 %description -l pl.UTF-8
 Ten pakiet udostępnia usługę logowania dla Telepathy.
 
-%package apidocs
-Summary:	telepathy-logger library API documentation
-Summary(pl.UTF-8):	Dokumentacja API biblioteki telepathy-logger
-Group:		Documentation
-Requires:	gtk-doc-common
-
-%description apidocs
-telepathy-logger library API documentation.
-
-%description apidocs -l pl.UTF-8
-Dokumentacja API biblioteki telepathy-logger.
-
 %package libs
 Summary:	telepathy-logger shared library
 Summary(pl.UTF-8):	Biblioteka telepathy-logger
 Group:		Libraries
+Requires:	dbus-glib >= 0.82
+Requires:	dbus-libs >= 1.1.0
+Requires:	glib2 >= 1:2.26.0
 Requires:	telepathy-glib >= 0.16.0
 
 %description libs
@@ -67,6 +65,7 @@ Summary:	Header files for telepathy-logger library
 Summary(pl.UTF-8):	Pliki nagłówkowe dla biblioteki telepathy-logger
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	dbus-glib-devel >= 0.82
 Requires:	glib2-devel >= 1:2.26.0
 Requires:	libxml2-devel
 Requires:	telepathy-glib-devel >= 0.16.0
@@ -76,6 +75,30 @@ Header files for telepathy-logger library.
 
 %description devel -l pl.UTF-8
 Pliki nagłówkowe dla biblioteki telepathy-logger.
+
+%package static
+Summary:	Static telepathy-logger library
+Summary(pl.UTF-8):	Statyczna biblioteka telepathy-logger
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static telepathy-logger library.
+
+%description static -l pl.UTF-8
+Statyczna biblioteka telepathy-logger.
+
+%package apidocs
+Summary:	telepathy-logger library API documentation
+Summary(pl.UTF-8):	Dokumentacja API biblioteki telepathy-logger
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+telepathy-logger library API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki telepathy-logger.
 
 %prep
 %setup -q
@@ -87,7 +110,7 @@ Pliki nagłówkowe dla biblioteki telepathy-logger.
 %{__automake}
 %configure \
 	--disable-silent-rules \
-	--disable-static \
+	%{!?with_static_libs:--disable-static} \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
 %{__make} -j1
@@ -103,8 +126,8 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post libs	-p /sbin/ldconfig
-%postun libs	-p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %post
 %glib_compile_schemas
@@ -121,10 +144,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.freedesktop.Telepathy.Logger.gschema.xml
 %{_datadir}/telepathy/clients/Logger.client
 
-%files apidocs
-%defattr(644,root,root,755)
-%{_gtkdocdir}/telepathy-logger
-
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtelepathy-logger.so.*.*.*
@@ -137,3 +156,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/telepathy-logger-0.2
 %{_pkgconfigdir}/telepathy-logger-0.2.pc
 %{_datadir}/gir-1.0/TelepathyLogger-0.2.gir
+
+%if %{with static_libs}
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libtelepathy-logger.a
+%endif
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/telepathy-logger
