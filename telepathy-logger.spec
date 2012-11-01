@@ -5,12 +5,12 @@
 Summary:	Logging service for Telepathy
 Summary(pl.UTF-8):	Usługa logowania dla Telepathy
 Name:		telepathy-logger
-Version:	0.4.0
+Version:	0.6.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications
 Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
-# Source0-md5:	0b891b860c7f3a01926f5cc22fd26120
+# Source0-md5:	f453c49e53898c64bc423f0fdf117290
 URL:		http://telepathy.freedesktop.org/wiki/Logger
 BuildRequires:	autoconf >= 2.66
 BuildRequires:	automake >= 1:1.9
@@ -32,7 +32,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	python >= 1:2.5
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	sqlite3-devel
-BuildRequires:	telepathy-glib-devel >= 0.16.0
+BuildRequires:	telepathy-glib-devel >= 0.19.2
 BuildRequires:	xorg-lib-libICE-devel
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires:	%{name}-libs = %{version}-%{release}
@@ -52,7 +52,7 @@ Group:		Libraries
 Requires:	dbus-glib >= 0.82
 Requires:	dbus-libs >= 1.1.0
 Requires:	glib2 >= 1:2.26.0
-Requires:	telepathy-glib >= 0.16.0
+Requires:	telepathy-glib >= 0.19.2
 
 %description libs
 telepathy-logger shared library.
@@ -68,7 +68,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 Requires:	dbus-glib-devel >= 0.82
 Requires:	glib2-devel >= 1:2.26.0
 Requires:	libxml2-devel
-Requires:	telepathy-glib-devel >= 0.16.0
+Requires:	telepathy-glib-devel >= 0.19.2
 
 %description devel
 Header files for telepathy-logger library.
@@ -147,7 +147,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtelepathy-logger.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtelepathy-logger.so.2
+%attr(755,root,root) %ghost %{_libdir}/libtelepathy-logger.so.3
 %{_libdir}/girepository-1.0/TelepathyLogger-0.2.typelib
 
 %files devel
