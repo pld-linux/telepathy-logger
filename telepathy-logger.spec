@@ -5,12 +5,12 @@
 Summary:	Logging service for Telepathy
 Summary(pl.UTF-8):	Usługa logowania dla Telepathy
 Name:		telepathy-logger
-Version:	0.6.0
+Version:	0.8.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications
 Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
-# Source0-md5:	f453c49e53898c64bc423f0fdf117290
+# Source0-md5:	e513eaa767344821073a0b7bb8b45217
 URL:		http://telepathy.freedesktop.org/wiki/Logger
 BuildRequires:	autoconf >= 2.66
 BuildRequires:	automake >= 1:1.9
@@ -18,14 +18,14 @@ BuildRequires:	dbus-devel >= 1.1.0
 BuildRequires:	dbus-glib-devel >= 0.82
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.26.0
+BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils > 0.17.3
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	gtk-doc-automake >= 1.10
 BuildRequires:	intltool >= 0.35.0
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2
 BuildRequires:	libxml2-devel
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig
@@ -34,7 +34,7 @@ BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	sqlite3-devel
 BuildRequires:	telepathy-glib-devel >= 0.19.2
 BuildRequires:	xorg-lib-libICE-devel
-Requires(post,postun):	glib2 >= 1:2.26.0
+Requires(post,postun):	glib2 >= 1:2.28.0
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	dbus >= 1.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -51,7 +51,7 @@ Summary(pl.UTF-8):	Biblioteka telepathy-logger
 Group:		Libraries
 Requires:	dbus-glib >= 0.82
 Requires:	dbus-libs >= 1.1.0
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.28.0
 Requires:	telepathy-glib >= 0.19.2
 
 %description libs
@@ -66,7 +66,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla biblioteki telepathy-logger
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	dbus-glib-devel >= 0.82
-Requires:	glib2-devel >= 1:2.26.0
+Requires:	glib2-devel >= 1:2.28.0
 Requires:	libxml2-devel
 Requires:	telepathy-glib-devel >= 0.19.2
 
