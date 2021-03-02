@@ -9,9 +9,9 @@ Version:	0.8.2
 Release:	2
 License:	LGPL v2.1+
 Group:		Applications
-Source0:	http://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
+Source0:	https://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
 # Source0-md5:	c2f6a31c76cbdf8790500cf4f872ba71
-URL:		http://telepathy.freedesktop.org/wiki/Logger
+URL:		https://telepathy.freedesktop.org/components/telepathy-logger/
 BuildRequires:	autoconf >= 2.66
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-devel >= 1.1.0
@@ -30,6 +30,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig
 BuildRequires:	python >= 1:2.5
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	sqlite3-devel
 BuildRequires:	telepathy-glib-devel >= 0.19.2
