@@ -1,0 +1,60 @@
+--- telepathy-logger-0.8.2/telepathy-logger/conf.c~	2015-04-28 18:46:29.000000000 +0200
++++ telepathy-logger-0.8.2/telepathy-logger/conf.c	2025-08-02 21:15:58.702085377 +0200
+@@ -127,7 +127,7 @@ tpl_conf_constructor (GType type,
+ 
+   if (conf_singleton != NULL)
+     {
+-      retval = g_object_ref (conf_singleton);
++      retval = G_OBJECT (g_object_ref (conf_singleton));
+     }
+   else
+     {
+--- telepathy-logger-0.8.2/telepathy-logger/dbus-service.c~	2015-04-28 18:46:29.000000000 +0200
++++ telepathy-logger-0.8.2/telepathy-logger/dbus-service.c	2025-08-02 21:18:10.899548249 +0200
+@@ -96,7 +96,7 @@ favourite_contact_closure_new (TplDBusSe
+   FavouriteContactClosure *closure;
+ 
+   closure = g_slice_new0 (FavouriteContactClosure);
+-  closure->service = g_object_ref (G_OBJECT (self));
++  closure->service = TPL_DBUS_SERVICE (g_object_ref (self));
+   closure->account = g_strdup (account);
+   closure->contact_id = g_strdup (contact_id);
+   /* XXX: ideally we'd up the ref count or duplicate this */
+--- telepathy-logger-0.8.2/telepathy-logger/log-manager.c~	2015-04-28 18:46:29.000000000 +0200
++++ telepathy-logger-0.8.2/telepathy-logger/log-manager.c	2025-08-02 21:21:13.087312206 +0200
+@@ -137,7 +137,7 @@ log_manager_finalize (GObject *object)
+ 
+   g_object_unref (priv->conf);
+ 
+-  g_list_foreach (priv->stores, (GFunc) g_object_unref, NULL);
++  g_list_foreach (priv->stores, (GFunc)(void (*)(gpointer)) g_object_unref, NULL);
+   g_list_free (priv->stores);
+   /* no unref needed here, the only reference kept is in priv->stores */
+   g_list_free (priv->writable_stores);
+@@ -159,7 +159,7 @@ log_manager_constructor (GType type,
+   GObject *retval = NULL;
+ 
+   if (G_LIKELY (manager_singleton))
+-    retval = g_object_ref (manager_singleton);
++    retval = G_OBJECT (g_object_ref (manager_singleton));
+   else
+     {
+       retval = G_OBJECT_CLASS (tpl_log_manager_parent_class)->constructor (
+@@ -241,7 +241,7 @@ _list_of_object_free (gpointer data)
+   GList *lst = data; /* list of GObject */
+ 
+   if (!_LIST_TAKEN (lst))
+-    g_list_foreach (lst, (GFunc) g_object_unref, NULL);
++    g_list_foreach (lst, (GFunc)(void (*)(gpointer)) g_object_unref, NULL);
+ 
+   g_list_free (lst);
+ }
+@@ -253,7 +253,7 @@ _list_of_date_free (gpointer data)
+   GList *lst = data; /* list of (GDate *) */
+ 
+   if (!_LIST_TAKEN (lst))
+-    g_list_foreach (lst, (GFunc) g_date_free, NULL);
++    g_list_foreach (lst, (GFunc)(void (*)(gpointer)) g_date_free, NULL);
+ 
+   g_list_free (lst);
+ }
