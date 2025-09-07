@@ -1,6 +1,30 @@
---- /home/users/baggins/rpm/BUILD/telepathy-logger-0.8.2-build/telepathy-logger-0.8.2/src/telepathy-logger.c.orig	2015-04-17 17:04:17.000000000 +0200
-+++ /home/users/baggins/rpm/BUILD/telepathy-logger-0.8.2-build/telepathy-logger-0.8.2/src/telepathy-logger.c	2025-09-07 15:45:50.849995802 +0200
+--- telepathy-logger-0.8.2/src/telepathy-logger.c.orig	2015-04-17 17:04:17.000000000 +0200
++++ telepathy-logger-0.8.2/src/telepathy-logger.c	2025-09-07 15:45:50.849995802 +0200
 @@ -67,7 +67,8 @@
+       struct tm tm;
+ 
+       g_get_current_time (&now);
+-      localtime_r (&(now.tv_sec), &tm);
++      time_t sec = now.tv_sec;
++      localtime_r (&sec, &tm);
+       strftime (now_str, 32, "%Y-%m-%d %H:%M:%S", &tm);
+       tmp = g_strdup_printf ("%s.%06ld: %s",
+         now_str, now.tv_usec, message);
+--- telepathy-logger-0.8.2/tests/dbus/test-log-manager.c~	2015-04-28 18:47:35.000000000 +0200
++++ telepathy-logger-0.8.2/tests/dbus/test-log-manager.c	2025-09-07 16:03:27.769995795 +0200
+@@ -70,7 +70,8 @@
+       struct tm tm;
+ 
+       g_get_current_time (&now);
+-      localtime_r (&(now.tv_sec), &tm);
++      time_t sec = now.tv_sec;
++      localtime_r (&sec, &tm);
+       strftime (now_str, 32, "%Y-%m-%d %H:%M:%S", &tm);
+       tmp = g_strdup_printf ("%s.%06ld: %s",
+           now_str, now.tv_usec, message);
+--- telepathy-logger-0.8.2/tests/dbus/test-tpl-log-store-pidgin.c~	2015-04-28 18:46:29.000000000 +0200
++++ telepathy-logger-0.8.2/tests/dbus/test-tpl-log-store-pidgin.c	2025-09-07 16:04:04.976662454 +0200
+@@ -76,7 +76,8 @@
        struct tm tm;
  
        g_get_current_time (&now);
