@@ -6,12 +6,13 @@ Summary:	Logging service for Telepathy
 Summary(pl.UTF-8):	Usługa logowania dla Telepathy
 Name:		telepathy-logger
 Version:	0.8.2
-Release:	5
+Release:	6
 License:	LGPL v2.1+
 Group:		Applications
 Source0:	https://telepathy.freedesktop.org/releases/telepathy-logger/%{name}-%{version}.tar.bz2
 # Source0-md5:	c2f6a31c76cbdf8790500cf4f872ba71
 Patch0:		build.patch
+Patch1:		time_t.patch
 URL:		https://telepathy.freedesktop.org/components/telepathy-logger/
 BuildRequires:	autoconf >= 2.66
 BuildRequires:	automake >= 1:1.9
@@ -106,6 +107,7 @@ Dokumentacja API biblioteki telepathy-logger.
 %prep
 %setup -q
 %patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %{__libtoolize}

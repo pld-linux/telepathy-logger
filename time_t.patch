@@ -1,0 +1,12 @@
+--- /home/users/baggins/rpm/BUILD/telepathy-logger-0.8.2-build/telepathy-logger-0.8.2/src/telepathy-logger.c.orig	2015-04-17 17:04:17.000000000 +0200
++++ /home/users/baggins/rpm/BUILD/telepathy-logger-0.8.2-build/telepathy-logger-0.8.2/src/telepathy-logger.c	2025-09-07 15:45:50.849995802 +0200
+@@ -67,7 +67,8 @@
+       struct tm tm;
+ 
+       g_get_current_time (&now);
+-      localtime_r (&(now.tv_sec), &tm);
++      time_t sec = now.tv_sec;
++      localtime_r (&sec, &tm);
+       strftime (now_str, 32, "%Y-%m-%d %H:%M:%S", &tm);
+       tmp = g_strdup_printf ("%s.%06ld: %s",
+         now_str, now.tv_usec, message);
